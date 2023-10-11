@@ -28,7 +28,14 @@ npm install -D typescript@next
 ## Contribute
 
 There are many ways to [contribute](https://github.com/microsoft/TypeScript/blob/main/CONTRIBUTING.md) to TypeScript.
-* [Submit bugs](https://github.com/microsoft/TypeScript/issues) and help us verify fixes as they are checked in.
+* [Submit bugs](https://github.com/microso
+
+
+
+
+
+
+ft/TypeScript/issues) and help us verify fixes as they are checked in.
 * Review the [source code changes](https://github.com/microsoft/TypeScript/pulls).
 * Engage with other TypeScript users and developers on [StackOverflow](https://stackoverflow.com/questions/tagged/typescript).
 * Help each other in the [TypeScript Community Discord](https://discord.gg/typescript).
