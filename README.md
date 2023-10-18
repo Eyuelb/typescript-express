@@ -49,3 +49,13 @@ ft/TypeScript/issues) and help us verify fixes as they are checked in.
   [![NPM Version][npm-version-image]][npm-url]
   [![NPM Install Size][npm-install-size-image]][npm-install-size-url]
   [![NPM Downloads][npm-downloads-image]][npm-downloads-url]
+
+ MinIO JavaScript Library for Amazon S3 Compatible Cloud Storage [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+
+[![NPM](https://nodei.co/npm/minio.png)](https://nodei.co/npm/minio/)
+
+The MinIO JavaScript Client SDK provides simple APIs to access any Amazon S3 compatible object storage server.
+
+This quickstart guide will show you how to install the client SDK and execute an example JavaScript program. For a complete list of APIs and examples, please take a look at the [JavaScript Client API Reference](https://min.io/docs/minio/linux/developers/javascript/API.html) documentation.
+
+This document assumes that you have a working [nodejs](http://nodejs.org/) setup in place.
