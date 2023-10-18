@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-export const uploadHandler = (
+export const multerUploadHandler = (
   req: Request,
   res: Response,
   next: NextFunction
