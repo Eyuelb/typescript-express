@@ -15,6 +15,7 @@ Find others who are using TypeScript at [our community page](https://www.typescr
 
 For the latest stable version:
 
+
 ```bash
 npm install -D typescript
 ```
@@ -43,6 +44,15 @@ ft/TypeScript/issues) and help us verify fixes as they are checked in.
 * [Contribute bug fixes](https://github.com/microsoft/TypeScript/blob/main/CONTRIBUTING.md).
 
 [![Express Logo](https://i.cloudup.com/zfY6lL7eFa-3000x3000.png)](http://expressjs.com/)
+
+
+
+# Multer [![Build Status](https://travis-ci.org/expressjs/multer.svg?branch=master)](https://travis-ci.org/expressjs/multer) [![NPM version](https://badge.fury.io/js/multer.svg)](https://badge.fury.io/js/multer) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+
+Multer is a node.js middleware for handling `multipart/form-data`, which is primarily used for uploading files. It is written
+on top of [busboy](https://github.com/mscdex/busboy) for maximum efficiency.
+
+**NOTE**: Multer will not process any form which is not multipart (`multipart/form-data`).
 
   Fast, unopinionated, minimalist web framework for [Node.js](http://nodejs.org).
 
