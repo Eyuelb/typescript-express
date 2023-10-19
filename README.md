@@ -59,3 +59,26 @@ The MinIO JavaScript Client SDK provides simple APIs to access any Amazon S3 com
 This quickstart guide will show you how to install the client SDK and execute an example JavaScript program. For a complete list of APIs and examples, please take a look at the [JavaScript Client API Reference](https://min.io/docs/minio/linux/developers/javascript/API.html) documentation.
 
 This document assumes that you have a working [nodejs](http://nodejs.org/) setup in place.
+
+
+
+
+# tus-node-server
+
+<img alt="Tus logo" src="https://github.com/tus/tus.io/blob/main/public/images/tus1.png?raw=true" width="30%" align="right" />
+
+> **tus** is a protocol based on HTTP for _resumable file uploads_. Resumable
+> means that an upload can be interrupted at any moment and can be resumed without
+> re-uploading the previous data again. An interruption may happen willingly, if
+> the user wants to pause, or by accident in case of an network issue or server
+> outage.
+
+tus-node-server is an official implementation of the [tus resumable upload protocol](http://www.tus.io/protocols/resumable-upload.html).
+The protocol specifies a flexible method to upload files to remote servers using HTTP.
+The special feature is the ability to pause and resume uploads at any
+moment allowing to continue seamlessly after e.g. network interruptions.
+
+It is capable of accepting uploads with arbitrary sizes and storing them locally
+on disk, on Google Cloud Storage or on AWS S3 (or any other S3-compatible
+storage system). Due to its modularization and extensibility, support for
+nearly any other cloud provider could easily be added to tus-node-server
