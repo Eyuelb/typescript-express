@@ -6,9 +6,6 @@ export const examplePostController = (req: Request, res: Response) => {
   res.status(200).json({ message: "Hello from post controller!" });
 };
 
-export const exampleMulterUploadController = (req: Request, res: Response) => {
-  res.status(200).json({ message: "File uploaded!" });
-};
 export const exampleMinioWithMulterUploadController = (req: Request, res: Response) => {
   if (res.locals.etag) {
     res.status(200).json({

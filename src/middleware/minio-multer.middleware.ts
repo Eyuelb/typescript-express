@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { Request, Response, NextFunction } from "express";
 import { minioClient, bucketName } from "../config/minio.config";
 import multer from "multer";
 const fs = require("fs");
