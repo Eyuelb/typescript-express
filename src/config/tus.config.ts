@@ -19,7 +19,5 @@ const serverOptions = {
 const tusServer = new tus.Server(serverOptions);
 
 tusServer.datastore = new tus.S3Store(store);
-// tusServer.datastore = new tus.FileStore({
-//   directory: 'C:/Users/eyuel/Documents/Tus-minio/api/files'
-// });
+
 export { tusServer };
