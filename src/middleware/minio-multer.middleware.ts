@@ -1,54 +1,46 @@
-import { Request, Response, NextFunction } from "express";
-import { minioClient, bucketName } from "../config/minio.config";
+import { Request, Response, NextFunction, RequestHandler } from "express";
+import { bucketName, minioStoreConfig } from "../config/minio.config";
 import multer from "multer";
-const fs = require("fs");
+import multerS3 from "multer-s3";
 
-// Create a temporary directory for file storage
-const tempDir = "./tmp"; // You can use any temporary directory
-if (!fs.existsSync(tempDir)) {
-  fs.mkdirSync(tempDir);
-}
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, tempDir);
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-
-export const minioWithMulterUploadHandler = async (
+import { S3Client } from "@aws-sdk/client-s3";
+export const multerS3UploadHandler = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) =>
-  multer({ storage }).single("file")(req, res, async (err) => {
-    if (!req.file) {
+  multer({
+    storage: multerS3({
+      s3: new S3Client({
+        credentials: {
+          accessKeyId: minioStoreConfig.accessKeyId,
+          secretAccessKey: minioStoreConfig.secretAccessKey,
+        },
+        
+        region: "region_set_in_minio",
+        endpoint:minioStoreConfig.endpoint,
+        forcePathStyle:true
+      }),
+      bucket: bucketName,
+      metadata: function (req, file, cb) {
+        cb(null, 
+          {
+            filename: file.originalname,
+            filetype: file.mimetype,
+          }
+          );
+      },
+      key: function (req, file, cb) {
+        cb(null, btoa(`${file.originalname}${file.size}${file.mimetype}`));
+      },
+    }),
+  }).array("file",3)(req, res, async (err) => {
+    if (!req.files) {
       return res.status(400).send("No file to be uploaded.");
     }
     if (err) {
-        return res.status(400).json({err});
-      }
-    const originalFileName = req.file.filename;
-    const tempFilePath = req.file.path;
-    minioClient.fPutObject(
-      bucketName,
-      originalFileName,
-      tempFilePath,
-      (error: any, etag: string) => {
-        if (error) {
-          console.log(error);
-          return next(error); // Pass the error to the next middleware
-        }
-        // Pass the etag in the response
-        res.locals.etag = etag;
+      return res.status(400).json({ error: err.message });
+    }
+    next();
+  })
 
-        fs.unlink(tempFilePath, (unlinkError: any) => {
-          if (unlinkError) {
-            console.error("Error deleting temporary file:", unlinkError);
-          }
-        });
-        return next(); // Continue to the next middleware when the upload is successful
-      }
-    );
-  });
